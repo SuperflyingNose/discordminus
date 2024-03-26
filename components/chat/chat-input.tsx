@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface ChatInputProps {
   apiUrl: string;
@@ -28,6 +29,8 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
     },
   });
 
+  const router = useRouter();
+
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -38,6 +41,9 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
       });
 
       await axios.post(url, values);
+
+      form.reset();
+      router.refresh();
     } catch (error) {
       console.log(error);
     }
