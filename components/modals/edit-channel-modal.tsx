@@ -45,7 +45,7 @@ const formShema = z.object({
       message: "Channel name is required",
     })
     .refine((name) => name !== "general", {
-      message: 'Channel name cannot be "general"',
+      message: 'Имя канала не может быть "general"',
     }),
   type: z.nativeEnum(ChannelType),
 });

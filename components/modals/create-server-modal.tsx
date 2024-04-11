@@ -31,10 +31,10 @@ import { useModal } from "@/hooks/use-modal-store";
 
 const formShema = z.object({
   name: z.string().min(1, {
-    message: "Sever name is required",
+    message: "Необходимо название сервера",
   }),
   imageUrl: z.string().min(1, {
-    message: "Server image is required",
+    message: "Необходима картинка сервера",
   }),
 });
 
